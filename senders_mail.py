@@ -72,16 +72,16 @@ def parsing_domains_by_id(mail_processes: set) -> tuple:
         t_to_s = set()
         for mess in cur_mess:
             if not t_from:
-                t_from = re.search(r'from=<[^>]+>', mess) #from=<juri@etel.ru> 
-            t_to = re.search(r'to=<[^>]+>', mess) #to=<juri@etel.ru>
+                t_from = re.search(r'from=<[^>]+>', mess) #from=<juri@examle.ru> 
+            t_to = re.search(r'to=<[^>]+>', mess) #to=<juri@example.ru>
             status_sent = re.search(r'status=sent', mess) #
             if status_sent:
                 if t_from: 
-                    dom = re.search(r'[a-zA-Z0-9-_]+\.+[a-z]{2,6}', t_from.group(0)) #etel.ru
+                    dom = re.search(r'[a-zA-Z0-9-_]+\.+[a-z]{2,6}', t_from.group(0)) #example.ru
                     if dom: t_from_s = dom.group(0)
 
                 if t_to: 
-                    dom = re.search(r'[a-zA-Z0-9-_]+\.+[a-z]{2,6}', t_to.group(0)) #etel.ru
+                    dom = re.search(r'[a-zA-Z0-9-_]+\.+[a-z]{2,6}', t_to.group(0)) #example.ru
                     if dom: t_to_s.add(dom.group(0))
 
         if t_from_s not in from_domain.keys():
